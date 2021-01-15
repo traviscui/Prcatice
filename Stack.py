@@ -4,10 +4,14 @@ class Stack:
         self.count = 0
 
     def push(self, element):
+        if self.count == 32:
+            print("Stack Overflow")
         self.data[self.count] = element
         self.count += 1
     
     def pop(self):
+        if self.count == 0:
+            print("Stack Empty")
         tempo = self.data[self.count]
         self.data[self.count] = 0
         self.count -= 1
