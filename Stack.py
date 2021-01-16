@@ -4,24 +4,24 @@ class Stack:
         self.count = 0
 
     def push(self, element):
-        if self.count == 32:
+        if self.count >= 4:
             print("Stack Overflow")
+            return
         self.data[self.count] = element
         self.count += 1
+        return
     
     def pop(self):
-        if self.count == 0:
+        if self.count <= 0:
             print("Stack Empty")
-        tempo = self.data[self.count]
+            return
+        tempoaryVariable = self.data[self.count]
         self.data[self.count] = 0
         self.count -= 1
-        return tempo
+        return tempoaryVariable
 
     def isEmpty(self):
-        if self.count == 0:
-            return True
-        if self.count != 0:
-            return False
+        return self.count == 0
     
     def peek(self):
-        return self.data
+        return self.data[self.count]
