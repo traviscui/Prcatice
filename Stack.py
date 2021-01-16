@@ -4,10 +4,13 @@ class Stack:
         self.count = 0
 
     def push(self, element):
+        # TODO: expandion
         if self.count == 32:
             print("Stack Overflow")
+            #TODO: termination condition
         self.data[self.count] = element
         self.count += 1
+        # consider to return sth
     
     def pop(self):
         if self.count == 0:
@@ -25,3 +28,10 @@ class Stack:
     
     def peek(self):
         return self.data
+    
+    if __name__ == "__main__":
+        s = Stack()
+        for i in range(123):
+            s.push(i)
+        assert(s.data[-1]==122)
+        
