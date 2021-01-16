@@ -7,14 +7,48 @@ public class MortgageCalculator {
 		final byte MONTH_IN_YEAR = 12;
 		final byte PERCENTAGE = 100;
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Total loan: ");
-		int loan = scanner.nextInt();
+		int loanValue = 0;
+		float aPRValue = 0;
+		byte termValue = 0;
 		
-		System.out.print("Annual Interest Rate: ");
-		float aPR = scanner.nextFloat();
+		while (true) {
+			System.out.print("Total loan: ");
+			loanValue = scanner.nextInt();
+			if (loanValue < 1000 || loanValue > 1000000) {
+				System.out.println("Enter a number between 1,000 and 1,000,000.");
+				continue;
+			}
+			else 
+				break;
+		} 
 		
-		System.out.print("Terms of loan(Years): ");
-		byte term = scanner.nextByte();
+		int loan = loanValue;
+		
+		while (true) {
+			System.out.print("Annual Interest Rate: ");
+			aPRValue = scanner.nextFloat();
+			if (aPRValue <= 0 || aPRValue > 30) {
+				System.out.println("Enter a number greater than 0 and less or equal to 30.");
+				continue;
+			}
+			else 
+				break;
+		}
+		
+		float aPR = aPRValue;
+		
+		while (true) {
+			System.out.print("Terms of loan(Years): ");
+			termValue = scanner.nextByte();
+			if (termValue < 1 || termValue > 30) {
+				System.out.println("Enter a value between 1 and 30.");
+				continue;
+			}
+			else
+				break;
+		}
+		
+		byte term = termValue;
 		
 		float monthAPR = aPR / (MONTH_IN_YEAR * PERCENTAGE);
 		int termM = term * MONTH_IN_YEAR;
