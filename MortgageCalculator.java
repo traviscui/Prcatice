@@ -7,22 +7,22 @@ public class MortgageCalculator {
 	final static byte PERCENTAGE = 100;
 	
 	public static void main(String[] args) {
-		int loan = (int) GetNumber("Number of loan: ", 999, 1000000);
-		float aPR = (float) GetNumber("Number of Annual Interest: ", 0, 30);
-		byte term = (byte) GetNumber("Number of term(Years): ", 0, 30);
+		int loan = (int) getNumber("Number of loan: ", 999, 1000000);
+		float aPR = (float) getNumber("Number of Annual Interest: ", 0, 30);
+		byte term = (byte) getNumber("Number of term(Years): ", 0, 30);
 		
 		NumberFormat currency = NumberFormat.getCurrencyInstance();
-		double mortgage = FindMortgage(loan, aPR, term);
+		double mortgage = findMortgage(loan, aPR, term);
 		String result = currency.format(mortgage);
 		
 		System.out.println("-------------------------------");
 		System.out.println("Monthly Payments is " + result);
 		System.out.println("Payment Schedule");
 		System.out.println("-------------------------------");
-		FindMonthlyPayment(loan, aPR, term);
+		findMonthlyPayment(loan, aPR, term);
 	}
 	
-	public static double GetNumber(String prompt, int min, int max) {
+	public static double getNumber(String prompt, int min, int max) {
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			System.out.print(prompt);
@@ -37,7 +37,7 @@ public class MortgageCalculator {
 		
 	}
 	
-	public static double FindMortgage(int loan, float aPR, byte term) {		
+	public static double findMortgage(int loan, float aPR, byte term) {		
 		float monthAPR = aPR / (MONTH_IN_YEAR * PERCENTAGE);
 		int termM = term * MONTH_IN_YEAR;
 		
@@ -45,7 +45,8 @@ public class MortgageCalculator {
 		
 		return mortGage;
 	}
-	public static void FindMonthlyPayment(int loan, float aPR, byte term) {	
+	
+	public static void findMonthlyPayment(int loan, float aPR, byte term) {	
 		int termM = term * MONTH_IN_YEAR;
 		float monthAPR = aPR / (MONTH_IN_YEAR * PERCENTAGE);
 		
