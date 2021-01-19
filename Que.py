@@ -1,45 +1,44 @@
-class Que:
+class Queue:
     def __init__(self):
         self.capacity = 32
         self.data = [None] * self.capacity
         self.count_front = 0
         self.count_rear = 0
-    
-    def enq(self, element):
-        if Que.is_full(self) is True:
+    `
+    def enqueue(self, value):
+        if self.is_full():
             raise Exception("Que is full.")
-        self.data[self.count_rear] = element
-        self.count_rear = (self.count_rear + 1) % self.capacity
+        self.data[self.count_rear] = value
+        self.count_rear = self.increase_index(self.count_rear)
         return
 
-    def deq(self):
-        if Que.is_empty(self) is True:
+    def dequeue(self):
+        if self.is_empty():
             raise Exception("Que is Empty.")
-        self.data[self.count_front] = None
-        self.count_front = (self.count_front + 1) % self.capacity
-        return
+        result = self.data[self.count_front]
+        self.count_front = self.increase_index(self.count_front)
+        return result
 
     def is_empty(self):
-        if self.count_rear == self.count_front:
-            return True
-        else:
-            return False
+        return self.count_rear == self.count_front
 
     def is_full(self):
-        if (self.capacity - self.count_front + self.count_rear) % self.capacity == self.capacity - 1:
-            return True
-        else:
-            return False
+        return (self.capacity - self.count_front + self.count_rear) % self.capacity == self.capacity - 1
 
     def peek(self):
-        print(self.data)
+        return self.data[self.count_front]
 
-Q = Que()
+    def increase_index(self, current_index):
+        return (current_index + 1) % self.capacity
+
+Q = Queue()
+Q2 = Queue()
 
 for i in range(31):
-    Q.enq(i)
-    Q.peek()
+    Q.enqueue(i)
+    Q2.enqueue(i)
+    print(Q.data)
 
 for i in range(90):
-    Q.deq()
+    Q.dequeue()
     Q.peek()
