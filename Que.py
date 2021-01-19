@@ -17,6 +17,7 @@ class Que:
             raise Exception("Que is Empty.")
         self.data[self.count_front] = None
         self.count_front = (self.count_front + 1) % self.capacity
+        return
 
     def is_empty(self):
         if self.count_rear == self.count_front:
